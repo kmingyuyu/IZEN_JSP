@@ -1,0 +1,30 @@
+package test;
+
+import java.time.LocalDate;
+
+// DO
+public class Q {
+	private String id;
+	private String name;
+	private String address;
+	private String grade;
+	private String phone;
+	
+	public Q (String id , String name , String address , String grade , String phone ) {
+		this.id = id;
+		this.name = name ;
+		this.address = address;
+		this.grade = grade;
+		this.phone = phone;
+		
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+}

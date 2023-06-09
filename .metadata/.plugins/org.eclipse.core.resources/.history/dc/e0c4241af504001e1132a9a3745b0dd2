@@ -1,0 +1,52 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시물 작성</title>
+</head>
+<body>
+    <h1>게시물 작성</h1>
+    <form action="write.jsp" method="post">
+        <label for="title">제목:</label>
+        <input type="text" id="title" name="title" required><br>
+        <label for="author">작성자:</label>
+        <input type="text" id="author" name="author" required><br>
+        <label for="content">내용:</label><br>
+        <textarea id="content" name="content" rows="5" cols="40" required></textarea><br>
+        <input type="submit" value="작성">
+    </form>
+    
+    <% 
+    if (request.getMethod().equals("POST")) {
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String content = request.getParameter("content");
+        
+        try {
+            // Oracle 데이터베이스 연결
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "사용자명", "비밀번호");
+            
+            // 게시물 작성 쿼리 실행
+            String query = "INSERT INTO board (title, author, content, date) VALUES (?, ?, ?, SYSDATE)";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, title);
+            pstmt.setString(2, author);
+            pstmt.setString(3, content);
+            pstmt.executeUpdate();
+            
+            // 자원 해제
+            pstmt.close();
+            conn.close();
+            
+            // 게시물 작성 후 목록 페이지로 리다이렉트
+            response.sendRedirect("board.jsp");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    %>
+</body>
+</html>

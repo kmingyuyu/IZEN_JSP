@@ -1,0 +1,19 @@
+function chkform() {
+	var f = document.frm; //form 태그
+	
+	
+	if(frm.title.value == ''){ //name이 title인 input타입의 값을 가져온다.
+		alert("제목을 입력해주세요.");
+		return false;
+	}
+	
+	if(frm.user_id.value == ''){ 
+		alert("아이디를 입력해주세요.");
+		return false;
+	}
+	
+	if(frm.content.value == ''){ 
+		alert("내용을 입력해주세요.");
+		return false;
+	}
+}

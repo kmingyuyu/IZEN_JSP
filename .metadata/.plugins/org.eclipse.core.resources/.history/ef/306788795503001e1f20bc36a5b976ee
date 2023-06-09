@@ -1,0 +1,68 @@
+package test;
+
+import java.io.IOException;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/qcontrol")
+public class QControl extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+	
+	
+	QService service;
+       
+	
+    public QControl() {
+        super();
+    }
+    
+    @Override
+    public void init(ServletConfig config) throws ServletException {
+    	super.init(config);
+    	
+    	service = new QService();
+    	
+    }
+
+	@Override
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String action = req.getParameter("action");
+		String view = "";
+		
+		if(action == null) {
+			getServletContext()
+			.getRequestDispatcher("/qcontrol?action=list")
+			.forward(req, resp);
+		}
+		
+		else {
+			switch (action) {
+			case "list":
+			}
+		}
+		
+		getServletContext()
+		.getRequestDispatcher("/test/" + view)
+		.forward(req, resp);
+		
+		
+	}
+
+    
+    public String list(HttpServletRequest req, HttpServletResponse resp) {
+    	req.setAttribute("p", service.All());
+    	return "qList.jsp";
+    }
+    
+    public String list(HttpServletRequest req, HttpServletResponse resp) {}
+    
+    
+    
+	
+
+}

@@ -1,0 +1,4 @@
+127.0.0.1 - - [09/Jun/2023:11:42:52 +0900] "GET / HTTP/1.1" 404 807
+0:0:0:0:0:0:0:1 - - [09/Jun/2023:11:42:52 +0900] "GET /jsp_Study/login-logout/index.jsp HTTP/1.1" 200 1071
+0:0:0:0:0:0:0:1 - - [09/Jun/2023:11:43:33 +0900] "POST /jsp_Study/login-logout/login.jsp HTTP/1.1" 200 226
+0:0:0:0:0:0:0:1 - - [09/Jun/2023:11:43:34 +0900] "GET /jsp_Study/login-logout/main.jsp HTTP/1.1" 200 348

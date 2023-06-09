@@ -1,0 +1,20 @@
+
+6월 08, 2023 09:34:11.668 NEW SESSION
+6월 08, 2023 09:34:11.668 [3212:2612:0608/093411.662:ERROR:account_info_fetcher.cc(62)] OnGetTokenFailure: Request canceled.
+
+6월 09, 2023 10:30:50.980 NEW SESSION
+6월 09, 2023 10:30:50.980 [8232:3496:0609/103050.970:ERROR:cert_issuer_source_aia.cc(34)] Error parsing cert retrieved from AIA (as DER):
+6월 09, 2023 10:30:50.980 ERROR: Couldn't read tbsCertificate as SEQUENCE
+6월 09, 2023 10:30:50.980 ERROR: Failed parsing Certificate
+6월 09, 2023 10:30:50.981 
+6월 09, 2023 10:30:51.27 [8232:3496:0609/103051.027:ERROR:cert_verify_proc_builtin.cc(702)] CertVerifyProcBuiltin for www.mrblog.net failed:
+6월 09, 2023 10:30:51.28 ----- Certificate i=0 (CN=www.mrblog.net) -----
+6월 09, 2023 10:30:51.30 ERROR: Time is after notAfter
+6월 09, 2023 10:30:51.30 
+6월 09, 2023 10:30:51.30 
+6월 09, 2023 10:34:42.925 [8232:1972:0609/103442.925:ERROR:device_event_log_impl.cc(222)] [10:34:42.925] Bluetooth: bluetooth_adapter_winrt.cc:1058 Getting Default Adapter failed.
+6월 09, 2023 11:13:18.284 [8232:3496:0609/111318.284:ERROR:cert_verify_proc_builtin.cc(702)] CertVerifyProcBuiltin for bunseok.net failed:
+6월 09, 2023 11:13:18.285 ----- Certificate i=0 (O=My Company Ltd,L=Newbury,ST=Berkshire,C=GB) -----
+6월 09, 2023 11:13:18.285 ERROR: No matching issuer found
+6월 09, 2023 11:13:18.285 
+6월 09, 2023 11:13:18.285 

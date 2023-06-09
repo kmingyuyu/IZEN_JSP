@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<publish-info>
+  <server id="health" path="publish2.dat"/>
+  <server id="jwbook" path="publish1.dat"/>
+  <server id="jsp_Study" path="publish0.dat"/>
+  <server id="board" path="publish2.dat"/>
+</publish-info>

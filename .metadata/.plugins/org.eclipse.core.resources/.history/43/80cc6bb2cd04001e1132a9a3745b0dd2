@@ -1,0 +1,37 @@
+package test;
+
+import java.util.*;
+// model
+public class RegistService {
+	
+	Map<String , Regist> qList = new HashMap<> ();
+	
+	
+	public RegistService () {
+		Regist q1 = new Regist("101","김지우","서울시","silver","010-1111-1111");
+		Regist q2 = new Regist("102","홍길동","인천시","gold","010-2222-2222");
+		Regist q3 = new Regist("103","율곡","김포시","vip","010-3333-3333");
+		
+		qList.put("1", q1);
+		qList.put("2", q2);
+		qList.put("3", q3);
+	}
+	
+	public List<Regist> All () {
+		return new ArrayList<>(qList.values());
+	}
+	
+	
+	public Regist find(String id) {
+		return qList.get(id);
+	}
+	
+	
+	
+	
+ 	
+	
+	
+	
+	
+}

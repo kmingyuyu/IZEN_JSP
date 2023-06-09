@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+	html, body {
+	 height :100%;
+	 margin :0;
+	}
+	
+	form {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	}
+	
+	div {
+	width: 300px;
+	margin: 0 auto;
+	align-items: center;
+	}
+	
+	
+	
+	h1 {
+	font-size: 20px;
+	}
+	
+	
+
+
+</style>
+
+</head>
+<body>
+	<form action="login.jsp" method="post">
+		<div>
+		<h1>회원관리 로그인</h1>
+		<label for="id"></label>
+		<input type="text" name="id" id="id" placeholder="아이디"/>
+		<br />
+		<label for="pw"></label>
+		<input type="password" name="pw" id="pw" placeholder="비밀번호"/>
+		<br />
+		<br />
+		<br />
+		<input type="submit" value="로그인" />
+		<input type="reset" value="취소" />
+		</div>
+	</form>
+</body>
+</html>

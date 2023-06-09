@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form method ="post" action="/jsp_Study/Login">
+	<input type = "text" name= "id" id="id" size="10" placeholder="아이디" />
+	
+		<input type = "text" name= "pw" id="pw" size="10" placeholder="비밀번호" />
+		<input type = "submit" value= "로그인" />
+	</form>
+</body>
+</html>

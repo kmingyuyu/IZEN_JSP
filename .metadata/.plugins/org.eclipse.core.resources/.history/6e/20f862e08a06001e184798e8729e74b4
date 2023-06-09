@@ -1,0 +1,39 @@
+package DO;
+
+public class MemberInfo {
+	
+	
+	
+	
+	
+	
+	public int getMember_age() {
+		return member_age;
+	}
+	public void setMember_age(int member_age) {
+		this.member_age = member_age;
+	}
+	public int getMember_height() {
+		return member_height;
+	}
+	public void setMember_height(int member_height) {
+		this.member_height = member_height;
+	}
+	public int getMember_weight() {
+		return member_weight;
+	}
+	public void setMember_weight(int member_weight) {
+		this.member_weight = member_weight;
+	}
+	public String getMember_exercise() {
+		return member_exercise;
+	}
+	public void setMember_exercise(String member_exercise) {
+		this.member_exercise = member_exercise;
+	}
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,75 @@
+package DO;
+
+import java.util.*;
+
+public class Member {
+	private int Member_no ; // 회원번호
+	private String member_name; // 이름
+	private String member_gender; //성별
+	
+	
+	private ArrayList<MemberInfo> infoList = new ArrayList<>();
+	
+	
+	
+	public void addinfoList (MemberInfo memberInfo) {
+		infoList.add(memberInfo);
+	}
+
+
+
+	public int getMember_no() {
+		return Member_no;
+	}
+
+
+
+	public void setMember_no(int member_no) {
+		Member_no = member_no;
+	}
+
+
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+
+
+	public String getMember_gender() {
+		return member_gender;
+	}
+
+
+
+	public void setMember_gender(String member_gender) {
+		this.member_gender = member_gender;
+	}
+
+
+
+	public ArrayList<MemberInfo> getInfoList() {
+		return infoList;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

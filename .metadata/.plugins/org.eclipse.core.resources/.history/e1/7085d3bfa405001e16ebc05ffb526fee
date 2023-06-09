@@ -1,0 +1,111 @@
+package controller;
+
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
+import java.util.*;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.beanutils.BeanUtils;
+
+import DAO.BoardDAO;
+import DTO.Board;
+
+@WebServlet("/")
+@MultipartConfig(maxFileSize=1024*1024*2, location="c:/Temp/img")
+public class BoardController extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+    
+	private BoardDAO DAO;
+	private ServletContext ctx;
+	
+	
+    public BoardController() {
+        super();
+    }
+
+	public void init(ServletConfig config) throws ServletException {
+		super.init(config);
+		DAO = new BoardDAO();
+		ctx = getServletContext();
+		
+	}
+
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String command = request.getServletPath(); // 경로를 가져온다.
+		String site = null;
+		
+		//현재경로 
+		System.out.println("command : " + command);
+		
+		//1. 경로를 정해준다 -> 라우팅
+		switch (command) {
+			case "/list": site = getList(request);	break;
+			case "/view": site = getView(request);	break;
+			case "/write": site = "write.jsp";	break; //글쓰기 화면을 보여줌
+			case "/insert": site = insertBoard(request);	break;
+		
+
+		}
+		
+		ctx.getRequestDispatcher("/" + site)
+		.forward(request, response);
+		
+		
+		
+	}
+
+	public String getList(HttpServletRequest request) {
+		ArrayList<Board> list;
+		
+		try {
+			list = DAO.getList();
+			request.setAttribute("boardList" , list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "index.jsp";
+		
+	}
+	
+	public String getView(HttpServletRequest request) {
+		int board_no = Integer.parseInt(request.getParameter("board_no"));
+		
+		try {
+			DAO.updateViews(board_no); //조회수 증가
+			Board b = DAO.getView(board_no);
+			request.setAttribute("board", b);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return "view.jsp";
+	}
+	
+	public String insertBoard(HttpServletRequest request) {
+		Board b = new Board();
+		
+		try {
+			BeanUtils.populate(b, request.getParameterMap());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return "redirect:/list";
+		
+	}
+	
+	
+	
+	
+}

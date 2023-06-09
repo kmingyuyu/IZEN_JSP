@@ -1,0 +1,84 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시물 수정</title>
+</head>
+<body>
+    <h1>게시물 수정</h1>
+    <form action="edit.jsp" method="post">
+        <% 
+        try {
+            // 수정할 게시물 조회
+            int id = Integer.parseInt(request.getParameter("id"));
+            
+            // Oracle 데이터베이스 연결
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "사용자명", "비밀번호");
+            Statement stmt = conn.createStatement();
+            
+            String query = "SELECT * FROM board WHERE id=" + id;
+            ResultSet rs = stmt.executeQuery(query);
+            
+            if (rs.next()) {
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String content = rs.getString("content");
+                
+                out.println("<input type=\"hidden\" name=\"id\" value=\"" + id + "\">");
+                out.println("<label for=\"title\">제목:</label>");
+                out.println("<input type=\"text\" id=\"title\" name=\"title\" value=\"" + title + "\" required><br>");
+                out.println("<label for=\"author\">작성자:</label>");
+                out.println("<input type=\"text\" id=\"author\" name=\"author\" value=\"" + author + "\" required><br>");
+                out.println("<label for=\"content\">내용:</label><br>");
+                out.println("<textarea id=\"content\" name=\"content\" rows=\"5\" cols=\"40\" required>" + content + "</textarea><br>");
+                out.println("<input type=\"submit\" value=\"수정\">");
+            }
+            
+            // 자원 해제
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        %>
+    </form>
+    
+    <% 
+    if (request.getMethod().equals("POST")) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String author = request.getParameter("author");
+        String content = request.getParameter("content");
+        
+        try {
+            // Oracle 데이터베이스 연결
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "사용자명", "비밀번호");
+            
+            // 게시물 수정 쿼리 실행
+            String query = "UPDATE board SET title=?, author=?, content=? WHERE id=?";
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, title);
+            pstmt.setString(2, author);
+            pstmt.setString(3, content);
+            pstmt.setInt(4, id);
+            pstmt.executeUpdate();
+            
+            // 자원 해제
+            pstmt.close();
+            conn.close();
+            
+            // 게시물 수정 후 목록 페이지로 리다이렉트
+            response.sendRedirect("board.jsp");
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    %>
+</body>
+</html>

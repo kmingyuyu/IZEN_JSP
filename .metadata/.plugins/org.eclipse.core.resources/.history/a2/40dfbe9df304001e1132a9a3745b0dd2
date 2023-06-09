@@ -1,0 +1,56 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>게시물 목록</title>
+</head>
+<body>
+    <h1>게시물 목록</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th></th>
+        </tr>
+        <% 
+        try {
+            // Oracle 데이터베이스 연결
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE", "사용자명", "비밀번호");
+            Statement stmt = conn.createStatement();
+            
+            // 게시물 조회 쿼리 실행
+            String query = "SELECT * FROM board";
+            ResultSet rs = stmt.executeQuery(query);
+            
+            // 조회 결과 출력
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String author = rs.getString("author");
+                String time = rs.getString("time");
+                
+                out.println("<tr>");
+                out.println("<td>" + id + "</td>");
+                out.println("<td>" + title + "</td>");
+                out.println("<td>" + author + "</td>");
+                out.println("<td>" + time + "</td>");
+                out.println("<td><a href=\"edit.jsp?id=" + id + "\">수정</a> | <a href=\"delete.jsp?id=" + id + "\">삭제</a></td>");
+                out.println("</tr>");
+            }
+            
+            // 자원 해제
+            rs.close();
+            stmt.close();
+            conn.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        %>
+    </table>
+</body>
+</html>

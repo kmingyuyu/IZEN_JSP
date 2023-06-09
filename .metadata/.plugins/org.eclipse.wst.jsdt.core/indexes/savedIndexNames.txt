@@ -1,0 +1,12 @@
+INDEX VERSION 1.4+C:\MINGYU JSP\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2159020333.index
+3882650937.index
+470135185.index
+1528608416.index
+100785677.index
+903434953.index
+1898262643.index
+1733079015.index
+3882650937.index
+2552342274.index
+1425716597.index
