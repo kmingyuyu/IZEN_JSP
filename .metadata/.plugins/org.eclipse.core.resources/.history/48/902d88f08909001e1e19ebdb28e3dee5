@@ -1,0 +1,135 @@
+package DO;
+
+
+public class Member {
+	private int Member_no ; // 회원번호
+	private String member_name; // 이름
+	private String member_gender; //성별
+	private int member_age; //나이
+	private int member_height; //키
+	private int member_weight; //몸무게
+	private String member_img; //몸무게
+	private String member_exercise; //운동강도
+	
+	
+	
+	
+	
+
+
+	
+
+
+	public String getMember_img() {
+		return member_img;
+	}
+
+
+
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
+
+
+
+	public int getMember_age() {
+		return member_age;
+	}
+
+
+
+	public void setMember_age(int member_age) {
+		this.member_age = member_age;
+	}
+
+
+
+	public int getMember_height() {
+		return member_height;
+	}
+
+
+
+	public void setMember_height(int member_height) {
+		this.member_height = member_height;
+	}
+
+
+
+	public int getMember_weight() {
+		return member_weight;
+	}
+
+
+
+	public void setMember_weight(int member_weight) {
+		this.member_weight = member_weight;
+	}
+
+
+
+	public String getMember_exercise() {
+		return member_exercise;
+	}
+
+
+
+	public void setMember_exercise(String member_exercise) {
+		this.member_exercise = member_exercise;
+	}
+
+
+
+	public int getMember_no() {
+		return Member_no;
+	}
+
+
+
+	public void setMember_no(int member_no) {
+		Member_no = member_no;
+	}
+
+
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+
+
+	public String getMember_gender() {
+		return member_gender;
+	}
+
+
+
+	public void setMember_gender(String member_gender) {
+		this.member_gender = member_gender;
+	}
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

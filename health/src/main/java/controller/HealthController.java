@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.*;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -12,6 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+
+import org.apache.commons.beanutils.BeanUtils;
 
 import DAO.HealthDAO;
 import DO.Member;
@@ -49,14 +52,25 @@ public class HealthController extends HttpServlet {
 				
 		
 		switch (command) {
-		case "/list": site = getList(request) ; break; 
+		case "/main": site = getList(request) ; break; //메인페이지
+		case "/info": site = getInfo(request);	break; //회원 상세페이지
+		case "/registration": site ="registration.jsp";  break; //회원 등록페이지
+		case "/insert": site = registration(request);	break; //글 등록
+		case "/edit": site = memberEdit(request);	break; //글 등록
+		
 		}
 		
-	
-		 //forward
+		if(site.startsWith("redirect:/")) { //redirect
+//			redirect 경로만 짤라온다
+			String rview = site.substring("redirect:/".length());
+			System.out.println(rview);
+			
+			response.sendRedirect(rview); //페이지 이동
+		}
+		else { //forward
 			ctx.getRequestDispatcher("/" + site)
 			.forward(request, response);
-		
+		}
 		
 	}
 	
@@ -74,7 +88,73 @@ public class HealthController extends HttpServlet {
 		
 		
 	}
+	
+	
+	public String getInfo(HttpServletRequest request) {
+		int member_no = Integer.parseInt(request.getParameter("member_no"));
+		
+		try {
+			Member m = DAO.getView(member_no);
+			request.setAttribute("member", m);
+		} catch (Exception e) {
+		}
+		
+		
+		return "info.jsp";
+	}
+	
+	
+	public String registration(HttpServletRequest request) {
+		Member m = new Member();
+		try {
+			BeanUtils.populate(m, request.getParameterMap());
+//			1.이미지 파일 자체를 서버 컴퓨터에 저장
+			Part part = request.getPart("file");
+			String fileName = getFilename(part);
+			
+			if(fileName != null && !fileName.isEmpty()) {
+				part.write(fileName); //파일을 컴퓨터에 저장한다.
+			}
+					
+			m.setMember_img("/img/" + fileName);
+			
+			DAO.registration(m);
+			
+		} catch (Exception e) {
+		}
+		
+		return "redirect:/main";
+		
+	}
+	
+	public String memberEdit(HttpServletRequest request) {
+		int member_no = Integer.parseInt(request.getParameter("member_no"));
+		try {
+			Member m = DAO.get
+		} catch (Exception e) {
+		}
+		
+		
+		
+		return "edit.jsp";
+	}
+	
+	
+	
+	
 
-    
+	private String getFilename(Part part) {
+		String fileName = null;
+		String header = part.getHeader("content-disposition");
+		
+		System.out.println("header -> " + header);
+		
+		int start = header.indexOf("filename=");
+		fileName = header.substring(start + 10 , header.length() -1 );
+		
+		System.out.println("파일명 -> " + fileName);
+		
+		return fileName;
+	}
 
 }

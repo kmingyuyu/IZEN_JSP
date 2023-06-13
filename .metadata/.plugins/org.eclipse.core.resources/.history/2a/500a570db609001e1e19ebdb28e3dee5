@@ -1,0 +1,96 @@
+package DO;
+import java.util.*;
+
+
+public class Member {
+	private int Member_no ; // 회원번호
+	private String member_name; // 이름
+	private String member_phone; // 핸드폰번호
+	private String member_reg_date; // 등록 일
+	private String member_end_date; // 종료 일
+	
+	HashMap<String , Member_Info> infoList = new HashMap<>();
+	
+	
+	public void put_infoList(String name , Member_Info member_Info) {
+		infoList.put(name , member_Info);
+	}
+
+
+	public int getMember_no() {
+		return Member_no;
+	}
+
+
+	public void setMember_no(int member_no) {
+		Member_no = member_no;
+	}
+
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+
+
+	public String getMember_reg_date() {
+		return member_reg_date;
+	}
+
+
+	public void setMember_reg_date(String member_reg_date) {
+		this.member_reg_date = member_reg_date;
+	}
+
+
+	public String getMember_end_date() {
+		return member_end_date;
+	}
+
+
+	public void setMember_end_date(String member_end_date) {
+		this.member_end_date = member_end_date;
+	}
+
+
+	public HashMap<String, Member_Info> getInfoList() {
+		return infoList;
+	}
+
+
+	
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}

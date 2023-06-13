@@ -30,7 +30,6 @@ a {
 }
 
 .wrap {
-	margin: 0 30px;
 }
 
 h1 {
@@ -40,7 +39,6 @@ h1 {
 
 .main_memberbox{
 	display : flex;
-	justify-content : space-between;
 	margin-top: 50px;
 }
 
@@ -62,26 +60,43 @@ h1 {
 </head>
 <body>
 <c:if test="${memberList == null && error == null}">
-		<jsp:forward page="list" />
+		<jsp:forward page="main" />
 	</c:if>
-
 <div class="wrap">
-          <h1>회원 목록</h1>
-          <hr>
+<header>
+		<div style="background-color: green; width:100%; height:130px;">
+		<p style="float:left; color:white; font-size:20px">회원 관리</p>
+		<p style="float:left; color:white; font-size:20px">Member management</p>
+		</div>
+</header>
+<main>
+		<table>
+		 <thead>
+          <tr>
+            <th>이름</th>
+            <th>핸드폰 번호</th>
+            <th>시작 일</th>
+            <th>종료 일</th>
+          </tr>
+        </thead>
+        <tbody>
        <!--  for (Board board : boardList) -->
-       <div class="main_memberbox">
        <c:forEach var="member" items="${memberList}" varStatus="status">
-       <div class="memberbox_in">
-       <a href=""><img class ="main_img" src="${member.member_img}" alt="회원 이미지"></a>
-            <p>no : ${member.member_no}</p>
-            <p>회원명 : ${member.member_name}</p>
-            <p>성별 : ${member.member_gender}</p>
-       </div>
+       	<tr>
+            <td> ${member.member_name}</td>
+            <td> ${member.member_phone}</td>
+            <td> ${member.member_reg_date}</td>
+            <td> ${member.member_end_date}</td>
+            <td><a href="info?member_no=${member.member_no}"><button type="button">상세보기</button></a></td>
+        </tr>
        </c:forEach>
-       </div>
-      <div>
-         <a href="write">회원 추가</a>
-      </div>
+        </tbody>
+		
+		</table>
+
+         <a href="registration">회원 추가</a>
+</main>                    
+ <footer></footer>
     </div>
     <script>
     	<c:if test="${param.error != null}">

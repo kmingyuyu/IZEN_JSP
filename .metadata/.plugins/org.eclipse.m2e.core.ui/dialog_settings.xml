@@ -81,6 +81,7 @@
 	</section>
 	<section name="wizardPage">
 		<list key="groupId">
+			<item value="health"/>
 			<item value="GPT"/>
 			<item value="board"/>
 			<item value="jsp_Study"/>
@@ -88,6 +89,7 @@
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="health"/>
 			<item value="GPT"/>
 			<item value="board"/>
 			<item value="jsp_Study"/>

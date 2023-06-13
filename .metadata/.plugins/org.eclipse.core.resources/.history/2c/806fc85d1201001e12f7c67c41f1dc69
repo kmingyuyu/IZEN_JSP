@@ -1,5 +1,0 @@
-package ch08;
-
-public class ProductService {
-	Map<String , product> products = new HashMap<> ();
-}

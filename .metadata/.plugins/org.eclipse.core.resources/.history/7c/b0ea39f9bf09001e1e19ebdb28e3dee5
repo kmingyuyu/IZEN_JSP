@@ -1,0 +1,167 @@
+package DO;
+
+
+public class Member {
+	private int Member_no ; // 회원번호
+	private String member_name; // 이름
+	private String member_phone; // 핸드폰번호
+	private String member_reg_date; // 등록 일
+	private String member_end_date; // 종료 일
+	
+	private String member_gender; //성별
+	private String member_address; //주소
+	private int member_age; //나이
+	private int member_height; //키
+	private int member_weight; //몸무게
+	private String member_img; // 이미지
+	private String member_exercise; //운동강도
+	
+	
+	
+	
+
+
+	public String getMember_gender() {
+		return member_gender;
+	}
+
+
+	public void setMember_gender(String member_gender) {
+		this.member_gender = member_gender;
+	}
+
+
+
+	public String getMember_address() {
+		return member_address;
+	}
+
+
+	public void setMember_address(String member_address) {
+		this.member_address = member_address;
+	}
+
+
+	public int getMember_age() {
+		return member_age;
+	}
+
+
+	public void setMember_age(int member_age) {
+		this.member_age = member_age;
+	}
+
+
+	public int getMember_height() {
+		return member_height;
+	}
+
+
+	public void setMember_height(int member_height) {
+		this.member_height = member_height;
+	}
+
+
+	public int getMember_weight() {
+		return member_weight;
+	}
+
+
+	public void setMember_weight(int member_weight) {
+		this.member_weight = member_weight;
+	}
+
+
+	public String getMember_img() {
+		return member_img;
+	}
+
+
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
+
+
+	public String getMember_exercise() {
+		return member_exercise;
+	}
+
+
+	public void setMember_exercise(String member_exercise) {
+		this.member_exercise = member_exercise;
+	}
+
+
+	public int getMember_no() {
+		return Member_no;
+	}
+
+
+	public void setMember_no(int member_no) {
+		Member_no = member_no;
+	}
+
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
+
+
+	public String getMember_phone() {
+		return member_phone;
+	}
+
+
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+
+
+	public String getMember_reg_date() {
+		return member_reg_date;
+	}
+
+
+	public void setMember_reg_date(String member_reg_date) {
+		this.member_reg_date = member_reg_date;
+	}
+
+
+	public String getMember_end_date() {
+		return member_end_date;
+	}
+
+
+	public void setMember_end_date(String member_end_date) {
+		this.member_end_date = member_end_date;
+	}
+
+
+
+	
+
+
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
