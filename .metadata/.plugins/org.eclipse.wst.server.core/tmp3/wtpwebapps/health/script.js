@@ -45,13 +45,13 @@ function chkForm() {
 }
 
 
-function chkDelete(board_no){
+function chkDelete(member_no){
 	const result = confirm("삭제 하시겠습니까?");
 	
 	
 	if(result){
 		const url = location.origin;
-		location.href = url + "/board/delete?board_no=" + board_no;
+		location.href = url + "/health/delete?member_no=" + member_no;
 	}else{
 		false;
 	}

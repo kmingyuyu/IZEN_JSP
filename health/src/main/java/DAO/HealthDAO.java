@@ -52,10 +52,10 @@ public class HealthDAO {
 	}
 	
 //	회원 정보 조회
-	public Member getView(int member_no) throws SQLException {
+	public Member getInfo(int member_no) throws SQLException {
 		Connection conn = open();
 		Member m = new Member();
-		String sql = "SELECT member_no , member_name , member_phone , member_reg_date  , member_end_date , member_gender ,"
+		String sql = "SELECT member_no , member_name , member_phone , to_char(member_reg_date , 'yyyy-mm-dd') member_reg_date , to_char(member_end_date , 'yyyy-mm-dd') member_end_date , member_gender ,"
 				+ " member_address ,member_age , member_height , member_weight , member_img , member_exercise from MEMBER where member_no= ? ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, member_no);
@@ -114,20 +114,83 @@ public class HealthDAO {
 		} 
 	}
 	
-	public void memberEdit(int member_no) throws SQLException {
+	public Member memberEdit(int member_no) throws SQLException {
 		Member m = new Member();
 		Connection conn = open();
-		String sql = "SELECT member_no , member_name , member_phone , member_reg_date  , member_end_date , member_gender ,"
+		String sql = "SELECT member_no , member_name , member_phone , to_char(member_reg_date , 'yyyy-mm-dd') member_reg_date , to_char(member_end_date , 'yyyy-mm-dd') member_end_date , member_gender ,"
 				+ " member_address ,member_age , member_height , member_weight , member_img , member_exercise from MEMBER where member_no= ? ";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, member_no);
+		ResultSet rs = pstmt.executeQuery();
 		
-		
-		
-		try(conn; pstmt;) {
+		try(conn; pstmt; rs;) {
+			m.setMember_no(rs.getInt("member_no"));
+			m.setMember_name(rs.getString("member_name"));
+			m.setMember_phone(rs.getString("member_phone"));
+			m.setMember_reg_date(rs.getString("member_reg_date"));
+			m.setMember_end_date(rs.getString("member_end_date"));
+			m.setMember_gender(rs.getString("member_gender"));
+			m.setMember_address(rs.getString("member_address"));
+			m.setMember_age(rs.getInt("member_age"));
+			m.setMember_height(rs.getInt("member_height"));
+			m.setMember_weight(rs.getInt("member_weight"));
+			m.setMember_img(rs.getString("member_img"));
+			m.setMember_exercise(rs.getString("member_exercise"));
+			
 			
 		} catch (Exception e) {
 		}
+		
+		return m;
 	}
+	
+	
+	public void memberUpdate(Member m) throws Exception {
+		Connection conn = open();
+		String sql = "update member set member_name= ? , member_phone=? , member_reg_date=? , member_end_date=? , " +
+				 " member_gender=? , member_address=? , member_age=? , member_height=? , member_weight=? , member_img=? , "
+				 +" member_exercise=? where member_no = ?  ";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		try(conn; pstmt;) {
+			
+			pstmt.setString(1, m.getMember_name());
+			pstmt.setString(2, m.getMember_phone());
+			pstmt.setString(3, m.getMember_reg_date());
+			pstmt.setString(4, m.getMember_end_date());
+			pstmt.setString(5, m.getMember_gender());
+			pstmt.setString(6, m.getMember_address());
+			pstmt.setInt(7, m.getMember_age());
+			pstmt.setInt(8, m.getMember_height());
+			pstmt.setInt(9, m.getMember_weight());
+			pstmt.setString(10, m.getMember_img());
+			pstmt.setString(11, m.getMember_exercise());
+			pstmt.setInt(12, m.getMember_no());
+			
+			if(pstmt.executeUpdate() !=1) {
+				throw new Exception("수정된 정보가 없습니다.");
+			}
+			
+			
+		}
+	}
+	
+	
+	public void memberDelete(int member_no) throws Exception {
+		Connection conn = open();
+		String sql = "delete from member where member_no= ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		try(conn; pstmt;) {
+			pstmt.setInt(1, member_no);
+			
+			
+			if(pstmt.executeUpdate() != 1) {
+				throw new Exception("삭제된 회원이 없습니다.");
+			};
+			
+			
+		} 
+	}
+	
 	
 	
 }

@@ -26,7 +26,7 @@
           </div>
           <div class="info">
             <dl>
-              <dt>글쓴이</dt>
+              <dt>글쓴이</dt>	
               <dd><input type="text" name="user_id" maxlength="10"  value="${board.user_id}" /></dd>
             </dl>
           </div>

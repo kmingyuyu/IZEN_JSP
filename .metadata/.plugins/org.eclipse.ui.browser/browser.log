@@ -18,3 +18,8 @@
 6월 09, 2023 11:13:18.285 ERROR: No matching issuer found
 6월 09, 2023 11:13:18.285 
 6월 09, 2023 11:13:18.285 
+
+6월 14, 2023 12:20:57.766 NEW SESSION
+6월 14, 2023 12:20:57.766 [8028:9672:0614/122057.765:ERROR:component_installer.cc(291)] Failed to read manifest for CRLSet (C:\Users\EZEN-11\AppData\Local\Google\Chrome\User Data\CertificateRevocation\8046).: 액세스가 거부되었습니다. (0x5)
+6월 14, 2023 12:20:57.767 [8028:9672:0614/122057.767:ERROR:component_installer.cc(291)] Failed to read manifest for Safety Tips (C:\Users\EZEN-11\AppData\Local\Google\Chrome\User Data\SafetyTips\2964).: 액세스가 거부되었습니다. (0x5)
+6월 14, 2023 12:20:57.767 [8028:9672:0614/122057.767:ERROR:component_installer.cc(291)] Failed to read manifest for Hyphenation (C:\Users\EZEN-11\AppData\Local\Google\Chrome\User Data\hyphen-data\116.0.5824.0).: 액세스가 거부되었습니다. (0x5)

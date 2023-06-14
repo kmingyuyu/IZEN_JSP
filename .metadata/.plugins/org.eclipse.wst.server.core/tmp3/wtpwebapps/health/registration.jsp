@@ -8,17 +8,15 @@
 <link rel="stylesheet" href="./css/style.css" />
 </head>
 <body>
-<div class="registration_wrap">
+<div class="wrap">
 	<header>
-		<div style="background-color: green; width:100%; height:130px;">
-		<p style="float:left; color:white; font-size:20px">회원 관리</p>
-		<p style="float:left; color:white; font-size:20px">Member management</p>
+		<div style=" float: left; font-size: 12px;" >
+		<span><a href="main">회원 관리 ></a><a href="info">회원 등록</a></span>
 		</div>
 	</header>
 	<main>
+		<div class="registration_box">
 		 <form name="frm" method="post" action="insert" enctype="multipart/form-data">
-        <div>
-          <div>
           <h1>기본 정보</h1>
             <dl>
               <dt>이름</dt>
@@ -37,8 +35,6 @@
               <dd><input type="text" name="member_end_date" maxlength="20" placeholder="ex) 2023-01-01" /></dd>
             </dl>
            
-          </div>
-          <div>
           <h1>상세 정보</h1>
              <select name="member_gender">
           		<option value="" >--선택--</option>
@@ -47,37 +43,37 @@
           </select>
              <dl>
               <dt>나이</dt>
-              <dd><input type="text" name="member_age" maxlength="10" placeholder="글쓴이 입력" /></dd>
+              <dd><input type="text" name="member_age" maxlength="10" placeholder="나이를 입력해주세요" /></dd>
             </dl>
              <dl>
               <dt>키</dt>
-              <dd><input type="text" name="member_height" maxlength="10" placeholder="글쓴이 입력" /></dd>
+              <dd><input type="text" name="member_height" maxlength="10" placeholder="키를 입력해주세요" /></dd>
             </dl>
              <dl>
               <dt>몸무게</dt>
-              <dd><input type="text" name="member_weight" maxlength="10" placeholder="글쓴이 입력" /></dd>
+              <dd><input type="text" name="member_weight" maxlength="10" placeholder="몸무게를 입력해주세요" /></dd>
             </dl>
              <dl>
               <dt>주소</dt>
-              <dd><input type="text" name="member_address" maxlength="10" placeholder="글쓴이 입력" /></dd>
+              <dd><input type="text" name="member_address" maxlength="10" placeholder="주소를 입력해주세요" /></dd>
             </dl>    
-          </div>
           <select name="member_exercise">
           		<option value="거의 운동 X" selected>거의 운동 X</option>
           		<option value="가벼운 운동(주1-3)" >가벼운 운동(주1-3)</option>
           		<option value="적당한 운동(주3-5)" >적당한 운동(주3-5)</option>
           		<option value="활동적인 운동(주5-7)" >활동적인 운동(주5-7)</option>
           </select>
-          <div style="padding-top:10px">
+          <div style="padding-top:10px;">
               <label style="font-size:1.4rem; padding-right: 20px;" for="file">이미지 업로드</label>
               <input type="file" name="file" id="file"/>
           </div>
-        </div>
        </form>
-        <div>
-          <a onclick="chkForm(); return false;">회원 등록</a>
+        <div style="margin-top:20px;">
+          <a onclick="chkForm(); return false;"><button type="button">완료</button></a>
+          <a href="main"><button type="button">취소</button></a>
 		</div>
 	
+		</div>
 	</main>
 	<footer></footer>
 	</div>

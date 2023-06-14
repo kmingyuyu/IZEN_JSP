@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -56,7 +58,9 @@ public class HealthController extends HttpServlet {
 		case "/info": site = getInfo(request);	break; //회원 상세페이지
 		case "/registration": site ="registration.jsp";  break; //회원 등록페이지
 		case "/insert": site = registration(request);	break; //글 등록
-		case "/edit": site = memberEdit(request);	break; //글 등록
+		case "/edit": site = memberEdit(request);	break; //수정 페이지
+		case "/update": site = memberUpdate(request);	break; //수정 완료하기
+		case "/delete": site = memberDelete(request);	break; //수정 완료하기
 		
 		}
 		
@@ -94,7 +98,7 @@ public class HealthController extends HttpServlet {
 		int member_no = Integer.parseInt(request.getParameter("member_no"));
 		
 		try {
-			Member m = DAO.getView(member_no);
+			Member m = DAO.getInfo(member_no);
 			request.setAttribute("member", m);
 		} catch (Exception e) {
 		}
@@ -130,13 +134,61 @@ public class HealthController extends HttpServlet {
 	public String memberEdit(HttpServletRequest request) {
 		int member_no = Integer.parseInt(request.getParameter("member_no"));
 		try {
-			Member m = DAO.get
+			Member m = DAO.getInfo(member_no);
+			request.setAttribute("member", m);
+			
 		} catch (Exception e) {
 		}
 		
 		
 		
 		return "edit.jsp";
+	}
+	
+	public String memberUpdate(HttpServletRequest request) {
+		Member m = new Member();
+		
+		try {
+			BeanUtils.populate(m, request.getParameterMap());
+			
+			Part part = request.getPart("file");
+			String fileName = getFilename(part);
+			
+			if(fileName != null && !fileName.isEmpty()) {
+				part.write(fileName); //파일을 컴퓨터에 저장한다.
+			}
+			
+			m.setMember_img("/img/" + fileName);
+			
+			DAO.memberUpdate(m);
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			ctx.log("회원 등록하는 과정에서 문제 발생");
+			try {
+				String encodeName = URLEncoder.encode("회원 등록이 정상적으로 등록되지 않았습니다." , "UTF-8");
+				return "redirect:/info?member_no=" + m.getMember_no() + "&error" + encodeName; 
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+		}
+		
+		return "redirect:/info?member_no=" + m.getMember_no();
+	}
+	
+	public String memberDelete(HttpServletRequest request) {
+		int member_no = Integer.parseInt(request.getParameter("member_no"));
+		
+		
+		try {
+			DAO.memberDelete(member_no);
+		} catch (Exception e) {
+		}
+		
+		
+		
+		return "redirect:/main";
 	}
 	
 	
